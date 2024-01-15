@@ -29,6 +29,12 @@ async function run() {
       pull_number: prNumber,
     });
 
+    // Check if newBody already exists in the current description
+    if (currentPR.body.includes(newBody)) {
+      console.log("New body already exists in the current description. No update needed.");
+      return;
+    }
+
     // Concatenate the new text to the existing description
     const combinedBody = `${currentPR.body}\n\n${newBody}`;
 
